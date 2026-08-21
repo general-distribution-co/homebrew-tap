@@ -1,0 +1,44 @@
+name: Test Homebrew formula
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  formula:
+    name: Formula (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-14
+          - ubuntu-24.04
+    steps:
+      - name: Check out the tap
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install Homebrew
+        uses: Homebrew/actions/setup-homebrew@a657b8b0cd35d0f65cce41fce9b24cf054b49869
+      - name: Verify the formula
+        if: ${{ hashFiles('Formula/genrl.rb') != '' }}
+        run: |
+          set -euo pipefail
+          brew style ./Formula/genrl.rb
+          brew audit --strict ./Formula/genrl.rb
+          brew install --formula ./Formula/genrl.rb
+          test -x "$(brew --prefix)/bin/genrl"
+          test -x "$(brew --prefix)/bin/genrl-mcp"
+      - name: Confirm bootstrap state
+        if: ${{ hashFiles('Formula/genrl.rb') == '' }}
+        run: test ! -e Formula/genrl.rb
