@@ -1,8 +1,6 @@
 class Genrl < Formula
   desc "Command-line interface and local MCP server for GENRL"
   homepage "https://wallet.genrl.co"
-  version "0.2.0"
-
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/general-distribution-co/homebrew-tap/releases/download/v0.2.0/genrl_0.2.0_darwin_arm64.tar.gz"
