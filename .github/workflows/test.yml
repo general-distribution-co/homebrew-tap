@@ -35,7 +35,7 @@ jobs:
         run: |
           set -euo pipefail
           brew style ./Formula/genrl.rb
-          brew audit --strict ./Formula/genrl.rb
+          brew audit --strict general-distribution-co/tap/genrl
           brew install --formula ./Formula/genrl.rb
           test -x "$(brew --prefix)/bin/genrl"
           test -x "$(brew --prefix)/bin/genrl-mcp"
