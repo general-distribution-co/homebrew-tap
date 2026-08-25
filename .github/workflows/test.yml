@@ -35,8 +35,8 @@ jobs:
         run: |
           set -euo pipefail
           brew style ./Formula/genrl.rb
-          brew audit --strict ./Formula/genrl.rb
-          brew install --formula ./Formula/genrl.rb
+          brew audit --strict general-distribution-co/tap/genrl
+          brew install general-distribution-co/tap/genrl
           test -x "$(brew --prefix)/bin/genrl"
           test -x "$(brew --prefix)/bin/genrl-mcp"
       - name: Confirm bootstrap state
