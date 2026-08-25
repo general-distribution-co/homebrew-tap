@@ -1,5 +1,9 @@
 # GENRL Homebrew Tap
 
+## CLI documentation
+
+[Open the rendered GENRL CLI documentation](https://general-distribution-co.github.io/homebrew-tap/) for installation, authentication, account and credit inspection, live compute discovery and lifecycle management, automation, troubleshooting, and local MCP setup.
+
 Install the GENRL command-line interface and local MCP server:
 
 ```bash
